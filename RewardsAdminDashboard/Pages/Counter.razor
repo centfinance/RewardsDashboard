@@ -1,0 +1,66 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>My Rewards</h1>
+
+<TelerikChart>
+    <ChartTitle Text="My top 3 rewards by pool"></ChartTitle>
+    <ChartTooltip Visible="true"></ChartTooltip>
+    <ChartLegend Position="ChartLegendPosition.Bottom"></ChartLegend>
+
+    <ChartSeriesItems>
+        <ChartSeries Type="ChartSeriesType.Line"
+                     Name="SYMM/CEUR"
+                     Data="@Data"
+                     Width="2"
+                     DashType="@DashType.DashDot"
+                     Field="@nameof(ModelData.Series1)">
+        </ChartSeries>
+        <ChartSeries Type="ChartSeriesType.Line"
+                     Name="SYMM/CELO"
+                     Data="@Data"
+                     Field="@nameof(ModelData.Series2)">
+        </ChartSeries>
+        <ChartSeries Type="ChartSeriesType.Line"
+                     Name="SYMM/CUSD"
+                     Data="@Data"
+                     Field="@nameof(ModelData.Series3)">
+        </ChartSeries>
+    </ChartSeriesItems>
+
+    <ChartCategoryAxes>
+        <ChartCategoryAxis Categories="@Categories"></ChartCategoryAxis>
+    </ChartCategoryAxes>
+
+    <ChartValueAxes>
+        <ChartValueAxis AxisCrossingValue="@AxisCrossingValue">
+            <ChartValueAxisLabels Format="{0} SYMM"></ChartValueAxisLabels>
+        </ChartValueAxis>
+    </ChartValueAxes>
+
+</TelerikChart>
+
+
+
+<TelerikChart>
+    <ChartTitle Text="My investment by pool (%)"></ChartTitle>
+    <ChartLegend Position="ChartLegendPosition.Bottom"></ChartLegend>
+
+    <ChartSeriesItems>
+        <ChartSeries
+            Type="ChartSeriesType.Pie"
+            Data="@PieData"
+            Field="@nameof(PieChartModelData.Percentage)"
+            CategoryField="@nameof(PieChartModelData.Source)"
+            ExplodeField="@nameof(PieChartModelData.Explode)">
+            <ChartSeriesTooltip Visible="true" Context="item">
+                <Template>
+                    @item.Percentage.ToString("P")
+                </Template>
+            </ChartSeriesTooltip>
+            <ChartSeriesLabels Visible="true"></ChartSeriesLabels>
+        </ChartSeries>
+    </ChartSeriesItems>
+</TelerikChart>
+
